@@ -1,0 +1,5 @@
+db <- dbConnect(SQLite(), dbname = 'projects.sqlite')
+queryInitialSetup01 <- reactive({dbGetQuery(db, paste0('SELECT * FROM tbl', input$tasksSelectProject))})
+output$tasks <- renderDT(datatable(data = queryInitialSetup01(), rownames = FALSE, colnames = c(), editable = list(target = 'column', disable = list(columns = c(0:3)))))
+queryInitialSetup02 <- reactive({dbGetQuery(db, paste0('SELECT * FROM tbl', input$issuesSelectProject))})
+output$issues <- renderDT(datatable(data = queryInitialSetup02(), rownames = FALSE, colnames = c('Unique Identifier', 'Issue Status', 'Issue Description', 'Issue Opening Date', 'Reply', 'Issue Closing Date')))
