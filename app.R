@@ -16,6 +16,7 @@ if(file.exists('ATLANTIS.db')) {
 version <- 'Version: 0.1b (6 August 2023)'
 creator <- 'Jakob Schöpe'
 year <- format(Sys.Date(), '%Y')
+colnamesProjects <- c('Unique Identifier', 'Project Name')
 colnamesTasks <- c('Unique Identifier', 'Title', 'Program Name', 'Output Type', 'Output Name', 'Reference', 'Programming Status', 'Statistical Programmer', 'Programming Specifications', 'Programming Completion Date', 'Quality Controlling Status', 'Quality Controller', 'Quality Controlling Specifications', 'Quality Controlling Completion Date', 'Delivery Status', 'Delivery Date')
 colnamesIssues <- c('Unique Identifier', 'Issue Status', 'Issue Description', 'Issue Opening Date', 'Reply', 'Issue Closing Date')
 
@@ -27,6 +28,9 @@ ui <- fluidPage(tags$head(HTML("<title>ATLANTIS</title> <link rel='icon' type='i
                                                div(div(style='display: inline-block; width: 135px;', actionButton(inputId = 'createProject00', label = 'Create project', icon = icon('plus', lib = 'font-awesome'))),
                                                    div(style='display: inline-block; width: 100px;', actionButton(inputId = 'editProject00', label = 'Edit project', icon = icon('pen-to-square', lib = 'font-awesome')))
                                                   ),
+                                               br(),
+                                               br(),
+                                               DTOutput(outputId = 'projects'),
                                                br(),
                                                br(),
                                                p(HTML('&#169;'), year, creator, align = 'center')
