@@ -1,5 +1,5 @@
 observeEvent(input$createIssue00, {
-  queryCreateIssue01 <- reactive({dbGetQuery(db, paste0('SELECT uniqueIdentifier FROM TASKS', input$createIssueSelectProject))$uniqueIdentifier})
+  queryCreateIssue01 <- reactive({dbGetQuery(db, paste0('SELECT uniqueIdentifier FROM TASKS', input$issuesSelectProject))$uniqueIdentifier})
   showModal(modalDialog(title = 'Create new issue',
                         selectInput(inputId = 'createIssue01', label = 'Unique Identifier', choices = queryCreateIssue01()),
                         textAreaInput(inputId = 'createIssue02', label = NULL, width = '600px', height = '200px', resize = 'none', placeholder = 'Please describe the issue.'),
