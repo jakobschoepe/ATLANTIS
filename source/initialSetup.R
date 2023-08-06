@@ -2,4 +2,3 @@ queryInitialSetup01 <- reactive({dbGetQuery(db, paste0('SELECT * FROM TASKS', in
 output$tasks <- renderDT(datatable(data = queryInitialSetup01(), rownames = FALSE, colnames = colnamesTasks, editable = list(target = 'column', disable = list(columns = c(0:3)))))
 queryInitialSetup02 <- reactive({dbGetQuery(db, paste0('SELECT * FROM ISSUES', input$issuesSelectProject))})
 output$issues <- renderDT(datatable(data = queryInitialSetup02(), rownames = FALSE, colnames = colnamesIssues))
-querySelectProject <- reactive({dbGetQuery(db, 'SELECT uniqueIdentifier FROM PROJECTS')$uniqueIdentifier})
