@@ -4,27 +4,15 @@ library(shiny)
 library(shinyjs)
 library(shinythemes)
 
-version <- 'Version: 0.1b (31 July 2023)'
+if(!file.exists('ATLANTIS.db')) {
+  db <- dbConnect(SQLite(), dbname = 'ATLANTIS.db')
+  dbGetQuery(db, 'CREATE TABLE PROJECTS (uniqueIdentifier varchar(255), projectName varchar(255))')
+}
+
+version <- 'Version: 0.1b (6 August 2023)'
 creator <- 'Jakob Schöpe'
 year <- format(Sys.Date(), '%Y')
-colnamesTasks <- c('Unique Identifier',
-              'Title',
-              'Program Name',
-              'Output Type',
-              'Output Name',
-              'Reference',
-              'Programming Status',
-              'Statistical Programmer',
-              'Programming Specifications',
-              'Programming Completion Date",
-              'Quality Controlling Status',
-              'Quality Controller',
-              'Quality Controlling Specifications',
-              'Quality Controlling Completion Date',
-              'Delivery Status',
-              'Delivery Date'
-              )
-
+colnamesTasks <- c('Unique Identifier', 'Title', 'Program Name', 'Output Type', 'Output Name', 'Reference', 'Programming Status', 'Statistical Programmer', 'Programming Specifications', 'Programming Completion Date', 'Quality Controlling Status', 'Quality Controller', 'Quality Controlling Specifications', 'Quality Controlling Completion Date', 'Delivery Status', 'Delivery Date')
 colnamesIssues <- c()
 
 ui <- fluidPage(tags$head(HTML("<title>ATLANTIS</title> <link rel='icon' type='image/gif/png' href='favicon.png'>")),
