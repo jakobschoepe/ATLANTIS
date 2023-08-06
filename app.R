@@ -38,7 +38,7 @@ ui <- fluidPage(tags$head(HTML("<title>ATLANTIS</title> <link rel='icon' type='i
                                       tabPanel('Tasks',
                                                selectInput(inputId = 'tasksSelectProject', label = 'Project', choices = dbGetQuery(db, 'SELECT uniqueIdentifier FROM PROJECTS')$uniqueIdentifier),
                                                br(),
-                                               div(div(style='display: inline-block; width: 100px;', actionButton(inputId = 'createTask00', label = 'Create task', icon = icon('plus', lib = 'font-awesome'))),
+                                               div(div(style='display: inline-block; width: 115px;', actionButton(inputId = 'createTask00', label = 'Create task', icon = icon('plus', lib = 'font-awesome'))),
                                                    div(style='display: inline-block; width: 100px;', actionButton(inputId = 'editTask00', label = 'Edit task', icon = icon('pen-to-square', lib = 'font-awesome')))
                                                   ),
                                                br(),
