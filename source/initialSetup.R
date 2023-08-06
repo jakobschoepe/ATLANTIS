@@ -1,11 +1,4 @@
-numberProjects <- nrow(dbGetQuery(db, 'SELECT * FROM PROJECTS'))
-if(numberProjects == 0) {
-  output$tasksNotification <- renderText('No available projects')
-  output$issuesNotification <- renderText('No available projects')
-}
-if(numberProjects > 0) {
-  queryInitialSetup01 <- reactive({dbGetQuery(db, paste0('SELECT * FROM TASKS', input$tasksSelectProject))})
-  output$tasks <- renderDT(datatable(data = queryInitialSetup01(), rownames = FALSE, colnames = colnamesTasks, editable = list(target = 'column', disable = list(columns = c(0:3)))))
-  queryInitialSetup02 <- reactive({dbGetQuery(db, paste0('SELECT * FROM ISSUES', input$issuesSelectProject))})
-  output$issues <- renderDT(datatable(data = queryInitialSetup02(), rownames = FALSE, colnames = colnamesIssues))
-}
+queryInitialSetup01 <- reactive({dbGetQuery(db, paste0('SELECT * FROM TASKS', input$tasksSelectProject))})
+output$tasks <- renderDT(datatable(data = queryInitialSetup01(), rownames = FALSE, colnames = colnamesTasks, editable = list(target = 'column', disable = list(columns = c(0:3)))))
+queryInitialSetup02 <- reactive({dbGetQuery(db, paste0('SELECT * FROM ISSUES', input$issuesSelectProject))})
+output$issues <- renderDT(datatable(data = queryInitialSetup02(), rownames = FALSE, colnames = colnamesIssues))
