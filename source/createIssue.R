@@ -12,7 +12,7 @@ observeEvent(input$createIssue04, {
   queryCreateIssue02 <- reactive({dbGetQuery(db, paste0('SELECT * FROM ISSUES', input$issuesSelectProject))})
   tmp01 <- ifelse(nrow(queryCreateIssue02()) < 1, 1, nrow(queryCreateIssue02()) + 1)
   tmp02 <- Sys.Date()
-  queryCreateIssue03 <- reactive({dbExecute(db, paste0('INSERT INTO ISSUES', input$issuesSelectProject, ' (uniqueIdentifier, issueStatus, issueDescription, issueOpeningDate) VALUES ("', input$createIssue01, '" (#"', tmp01, '"), "', input$createIssue03, '", "', input$createIssue02, '", "', tmp02, '")'))})
+  queryCreateIssue03 <- reactive({dbExecute(db, paste0('INSERT INTO ISSUES', input$issuesSelectProject, ' (uniqueIdentifier, issueStatus, issueDescription, issueOpeningDate) VALUES ("', input$createIssue01, ' (#', tmp01, ')", "', input$createIssue03, '", "', input$createIssue02, '", "', tmp02, '")'))})
   queryCreateIssue03()
   output$issues <- renderDT(datatable(data = queryCreateIssue02(), rownames = FALSE, colnames = colnamesIssues, filter = 'top'))
   removeModal()
