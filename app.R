@@ -81,6 +81,7 @@ ui <- fluidPage(tags$head(HTML("<title>ATLANTIS</title> <link rel='icon' type='i
 server <- function(input, output, session) {
   source('./source/initialSetup.R', local = TRUE)$value
   source('./source/createProject.R', local = TRUE)$value
+  source('./source/createTask.R', local = TRUE)$value
   source('./source/createIssue.R', local = TRUE)$value
   source('./source/replyIssue.R', local = TRUE)$value
 }
