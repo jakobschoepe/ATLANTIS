@@ -10,6 +10,6 @@ observeEvent(input$createTask02, {
   queryCreateTask01 <- reactive({dbAppendTable(db, paste0('TASKS', input$tasksSelectProject), read.csv(tmp01$datapath))})
   queryCreateTask01()
   queryCreateTask02 <- reactive({dbGetQuery(db, paste0('SELECT * FROM TASKS', input$tasksSelectProject))})
-  output$tasks <- renderDT(datatable(data = queryCreateTask02(), rownames = FALSE, colnames = colnamesIssues, filter = 'top'))
+  output$tasks <- renderDT(datatable(data = queryCreateTask02(), rownames = FALSE, colnames = colnamesTasks, filter = 'top'))
   removeModal()
 })
