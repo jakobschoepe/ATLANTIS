@@ -9,6 +9,10 @@ if(!file.exists('ATLANTIS.db')) {
   dbGetQuery(db, 'CREATE TABLE PROJECTS (uniqueIdentifier varchar(255), projectName varchar(255))')
 }
 
+if(file.exists('ATLANTIS.db')) {
+  db <- dbConnect(SQLite(), dbname = 'ATLANTIS.db')
+}
+
 version <- 'Version: 0.1b (6 August 2023)'
 creator <- 'Jakob Schöpe'
 year <- format(Sys.Date(), '%Y')
