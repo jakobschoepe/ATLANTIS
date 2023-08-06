@@ -12,5 +12,7 @@ observeEvent(input$createProject03, {
   queryCreateProject02 <- reactive({dbExecute(db, paste0('CREATE TABLE ISSUES', input$createProject01, ' (uniqueIdentifier varchar(255), issueStatus varchar(255), issueDescription varchar(255), issueOpeningDate varchar(255), reply varchar(255), issueClosingDate varchar(255))'))})
   queryCreateProject02()
   output$projects <- renderDT(datatable(data = dbGetQuery(db, 'SELECT * FROM PROJECTS'), rownames = FALSE, colnames = colnamesProjects))
+  updateSelectInput(inputId = 'tasksSelectProject', label = "Project", choices = dbGetQuery(db, 'SELECT uniqueIdentifier FROM PROJECTS')$uniqueIdentifier)
+  updateSelectInput(inputId = 'issuesSelectProject', label = "Project", choices = dbGetQuery(db, 'SELECT uniqueIdentifier FROM PROJECTS')$uniqueIdentifier)
   removeModal()
 })
