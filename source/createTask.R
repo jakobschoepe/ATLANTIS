@@ -6,7 +6,8 @@ observeEvent(input$createTask00, {
 })
 
 observeEvent(input$createTask02, {
-  queryCreateTask01 <- reactive({dbAppendTable(db, paste0('TASKS', input$createTaskSelectProject), read.csv(createTask01$datapath))})
+  tmp01 <- input$createTask01
+  queryCreateTask01 <- reactive({dbAppendTable(db, paste0('TASKS', input$createTaskSelectProject), read.csv(tmp01$datapath))})
   queryCreateTask01()
   queryCreateTask02 <- reactive({dbGetQuery(db, paste0('SELECT * FROM TASKS', input$createTaskSelectProject))})
   output$tasks <- renderDT(datatable(data = queryCreateTask02(), rownames = FALSE, colnames = colnamesIssues, filter = 'top'))
