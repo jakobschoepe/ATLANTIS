@@ -36,8 +36,7 @@ ui <- fluidPage(tags$head(HTML("<title>ATLANTIS</title> <link rel='icon' type='i
                                                p(HTML('&#169;'), year, creator, align = 'center')
                                               ),
                                       tabPanel('Tasks',
-                                               textOutput(outputId = 'tasksNotification'),
-                                               selectInput(inputId = 'tasksSelectProject', label = 'Project', choices = dbGetQuery(db, 'SELECT uniqueIdentifier FROM PROJECTS')),
+                                               selectInput(inputId = 'tasksSelectProject', label = 'Project', choices = querySelectProject()),
                                                br(),
                                                div(div(style='display: inline-block; width: 100px;', actionButton(inputId = 'createTask00', label = 'Create task', icon = icon('plus', lib = 'font-awesome'))),
                                                    div(style='display: inline-block; width: 100px;', actionButton(inputId = 'editTask00', label = 'Edit task', icon = icon('pen-to-square', lib = 'font-awesome')))
@@ -51,7 +50,7 @@ ui <- fluidPage(tags$head(HTML("<title>ATLANTIS</title> <link rel='icon' type='i
                                               ),
                                       tabPanel('Issues',
                                                textOutput(outputId = 'issuesNotification'),
-                                               selectInput(inputId = 'issuesSelectProject', label = "Project", choices = dbGetQuery(db, 'SELECT uniqueIdentifier FROM PROJECTS')),
+                                               selectInput(inputId = 'issuesSelectProject', label = "Project", choices = querySelectProject()),
                                                br(),
                                                div(div(style='display: inline-block; width: 120px;', actionButton(inputId = 'createIssue00', label = 'Create issue', icon = icon('plus', lib = 'font-awesome'))),
                                                    div(style='display: inline-block; width: 120px;', actionButton(inputId = 'editIssue00', label = 'Edit issue', icon = icon('pen-to-square', lib = 'font-awesome'))),
