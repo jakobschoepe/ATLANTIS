@@ -73,7 +73,7 @@ server <- function(input, output, session) {
   source('./source/initialSetup.R', local = TRUE)$value
   source('./source/createProject.R', local = TRUE)$value
   source('./source/createIssue.R', local = TRUE)$value
-  source('./source/replyIssue.R', local = TURE)$value
+  source('./source/replyIssue.R', local = TRUE)$value
 }
 
 shinyApp(ui, server)
