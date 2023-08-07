@@ -49,7 +49,6 @@ ui <- fluidPage(tags$head(HTML("<title>ATLANTIS</title> <link rel='icon' type='i
                                                p(HTML('&#169;'), year, creator, align = 'center')
                                               ),
                                       tabPanel('Issues',
-                                               textOutput(outputId = 'issuesNotification'),
                                                selectInput(inputId = 'issuesSelectProject', label = "Project", choices = dbGetQuery(db, 'SELECT uniqueIdentifier FROM PROJECTS')$uniqueIdentifier),
                                                br(),
                                                div(div(style='display: inline-block; width: 120px;', actionButton(inputId = 'createIssue00', label = 'Create issue', icon = icon('plus', lib = 'font-awesome'))),
