@@ -9,7 +9,7 @@ observeEvent(input$replyIssue00, {
 })
 
 observeEvent(input$replyIssue04, {
-  queryReplyIssue02 <- reactive({dbExecute(db, paste0('UPDATE ISSUES', input$issuesSelectProject, ' SET issueStatus = "', input$replyIssue03, ', reply = "Reply on ', Sys.Date(), ': ', input$replyIssue02, '" WHERE uniqueIdentifier = "', input$replyIssue01, '"'))})
+  queryReplyIssue02 <- reactive({dbExecute(db, paste0('UPDATE ISSUES', input$issuesSelectProject, ' SET issueStatus = "', input$replyIssue03, '", reply = "Reply on ', Sys.Date(), ': ', input$replyIssue02, '" WHERE uniqueIdentifier = "', input$replyIssue01, '"'))})
   queryReplyIssue02()
   queryReplyIssue03 <- reactive({dbGetQuery(db, paste0('SELECT * FROM ISSUES', input$issuesSelectProject))})
   output$issues <- renderDT(datatable(data = queryReplyIssue03(), rownames = FALSE, colnames = colnamesIssues, filter = 'top'))
